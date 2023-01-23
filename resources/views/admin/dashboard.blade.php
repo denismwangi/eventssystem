@@ -6,6 +6,7 @@
 $events= App\Event::orderBy('created_at',  'DESC')->get();
 $tickets=App\Ticket::orderBy('id','DESC')->get(); 
 $users = App\User::orderBy('id','DESC')->get(); 
+$bookings = App\Booking::orderBy('id', 'DESC')->get();
 @endphp
   <section class="content">
       <div class="container-fluid">
@@ -63,13 +64,13 @@ $users = App\User::orderBy('id','DESC')->get();
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>0</h3>
+                <h3>{{count($bookings)}}</h3>
 
                  <p>Bookings</p>              </div>
               <div class="icon">
 <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
             </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/admin/bookings" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -84,7 +85,7 @@ $users = App\User::orderBy('id','DESC')->get();
               <div class="icon">
                <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/admin/users" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

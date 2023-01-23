@@ -40,13 +40,13 @@
                 <div id="responsive-nav">
                     <!-- NAV -->
                     <ul class="main-nav nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Hot Deals</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <!-- <li><a href="#">Categories</a></li>
                         <li><a href="#">Laptops</a></li>
                         <li><a href="#">Smartphones</a></li>
                         <li><a href="#">Cameras</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Accessories</a></li> -->
                     </ul>
                     <!-- /NAV -->
                 </div>
@@ -112,25 +112,30 @@
                         <div class="row">
                            @if (count($events) > 0)
                     @foreach ($events as $event)
-                            <div class="col-md-4 col-xs-8">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
-                                        
+                            <div class="col-md-4 ">
+                               
+
+                                    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); height: 500px;">
+                                    
+                                       @if( !empty($event->image))
+                                  <img class="card-img-top" style="width:100%; height: 180px;" src="{{ URL::asset('static/images/events/'.$event->image )}}" alt="event image">
+                                   @else
+                                    <img class="card-img-top" style="width:100%; height: 180px;" src="{{ URL::asset('static/images/events/default.jpg')}}" alt="event image">
+                                   @endif
+                                      <div class="card-body">
+                                        <div style="margin-left: 7px; margin-bottom: 100px !important; margin-top: 20px;">
+                                        <h5 class="card-title">{{ $event->title }}</h5>
+                                      
+                                        <p><span class="label label-default">{{ $event->venue }}</span></p>
+                                        <p> <span class="label label-info"> {{ $event->start_time }}</span></p>
+                                          <p class="card-text">{!! $event->description !!}.</p>
+                                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary">Book Event</a>
                                     </div>
-                                    <div class="product-body">
-                                        
-                                        <h3 class="product-name"><a href="{{ route('events.show', $event->id) }}">{{ $event->title }}</a></h3>
-                                       
-                                        <div class="event-meta">
-                                <div class="venue"><span class="label label-default">{{ $event->venue }}</span></div>
-                                <div class="datetime"><span class="label label-info">{{ $event->start_time }}</span></div>
-                            </div>
-                            {!! $event->description !!}
-                             <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary"><i class=""></i> Book Event</a>
+                                      </div>
                                     </div>
                                     
-                                </div>
+                                    
+
                             </div>
                             @if ($loop->index > 0 && ($loop->index + 1) % 3 == 0) </div><hr /><div class="row"> @endif
                     @endforeach

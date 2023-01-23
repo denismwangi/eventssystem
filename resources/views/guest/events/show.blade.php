@@ -39,14 +39,14 @@
                 <!-- responsive-nav -->
                 <div id="responsive-nav">
                     <!-- NAV -->
-                    <ul class="main-nav nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Hot Deals</a></li>
-                        <li><a href="#">Categories</a></li>
+                   <ul class="main-nav nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <!-- <li><a href="#">Categories</a></li>
                         <li><a href="#">Laptops</a></li>
                         <li><a href="#">Smartphones</a></li>
                         <li><a href="#">Cameras</a></li>
-                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Accessories</a></li> -->
                     </ul>
                     <!-- /NAV -->
                 </div>
@@ -59,6 +59,22 @@
             <div class="container">
                 <!-- row -->
                 <div class="row">
+
+
+                @if (Session::has('success'))
+
+                    <div class="alert alert-success" role="alert" style="max-width: 500px;">
+               {{ session('success') }}
+              </div>
+
+               @endif
+               @if(Session::has('error'))
+                <div class="alert alert-danger" role="alert">
+               {{ session('error') }}
+              </div>
+
+               @endif
+
                    <form method="POST" action="{{url('/event/book')}}">
                       {{ csrf_field() }}
                     @php
@@ -74,38 +90,58 @@
                             <div class="form-group">
                               <label for="inputEmail4">Name</label>
                               <input type="text" name="name" class="form-control" id="inputEmail4">
+                               @if($errors->has('name'))
+                        <p class="help-block" style="color: red;">
+                            {{ $errors->first('name') }}
+                        </p>
+                    @endif
                             </div>
                             <div class="form-group">
                               <label for="inputEmail4">Email</label>
                               <input type="email" name="email" class="form-control" id="inputEmail4">
+                               @if($errors->has('email'))
+                        <p class="help-block" style="color: red;">
+                            {{ $errors->first('email') }}
+                        </p>
+                    @endif
                             </div>
                             <div class="form-group">
                               <label for="inputPassword4">Phone</label>
                               <input type="text" name="phone" class="form-control" id="inputPassword4">
+                               @if($errors->has('phone'))
+                        <p class="help-block" style="color: red;">
+                            {{ $errors->first('phone') }}
+                        </p>
+                    @endif
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputAddress">Amount</label>
                             <input type="text" class="form-control" id="inputAddress" readonly="" name="amount" placeholder="" value="{{$amount_a}}">
                           </div>
+                          
+                           
   
                     </div>
-                   
+                   @php
+                   $price = App\Ticket::where('id', $event->ticket_id)->first();
+                   $pr= $price->price;
+
+                   @endphp
                     <div class="col-md-5">
                         <div class="product-details">
-                            <h2 class="product-name">product name goes here</h2>
+                            <h2 class="product-name">{{ $event->title }}</h2>
                             <div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <a class="review-link" href="#">10 Review(s) | Add your review</a>
+                                 @if( !empty($event->image))
+                                  <img class="card-img-top" style="width:100%; height: 180px;" src="{{ URL::asset('static/images/events/'.$event->image )}}" alt="event image">
+                                   @else
+                                    <img class="card-img-top" style="width:100%; height: 180px;" src="{{ URL::asset('static/images/events/default.jpg')}}" alt="event image">
+                                   @endif
+                               <p><span class="label label-default">{{ $event->venue }}</span></p>
+                                        <p> <span class="label label-info"> {{ $event->start_time }}</span></p>
                             </div>
                             <div>
-                                <h3 class="product-price">$980.00 
+                                <h3 class="product-price">KES {{$pr}}
                             </div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 

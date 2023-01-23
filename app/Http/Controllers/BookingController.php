@@ -15,13 +15,14 @@ class BookingController extends Controller
     public function postBook(Request $request)
     {
 
-    	$validator = Validator::make($request->all(), [
-			'name' => 'required',
+    	
+		  $this->validate($request, [
+           'name' => 'required',
 			'email' => 'required',
 			'phone' => 'required',
 			'amount' => 'required',
-			
-		]);
+        ]);
+
 		$booking = new Booking;
 		$eid = $request->event_id;
 		$booking->event_id = $eid;

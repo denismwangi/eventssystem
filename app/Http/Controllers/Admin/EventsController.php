@@ -46,13 +46,43 @@ class EventsController extends Controller
      * @param  \App\Http\Requests\StoreEventsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEventsRequest $request)
+    public function store(Request $request)
     {
         if (! Gate::allows('event_create')) {
             return abort(401);
         }
+
+        $this->validate($request, [
+            'title' => 'required',
+            'start_time' => 'required|date_format:'.config('app.date_format').' H:i:s',
+            'venue' => 'required',
+            'image' => 'required',
+            'ticket_id' => 'required',
+        ]);
+
+       
+
+
+        if($request->file('image')){
+            $rand=rand(11111,111111);
+            $imageName1 = $rand.''.time().'.'.$request->image->extension();  
+     
+            $request->image->move(public_path('static/images/events'), $imageName1);  
+        }
+
+        $event = new Event;
+        $event->title = $request->title;
+        $event->start_time = $request->start_time;
+        $event->venue = $request->venue;
+        $event->image = $imageName1;
+        $event->ticket_id = $request->ticket_id;
+     //   dd($event);
+        $event->save();
+
+
+        
       //  dd($request->all());
-        $event = Event::create($request->all());
+      //  $event = Event::create($request->all());
 
 
 

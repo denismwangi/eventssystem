@@ -26,6 +26,7 @@ class StoreEventsRequest extends FormRequest
             'title' => 'required',
             'start_time' => 'required|date_format:'.config('app.date_format').' H:i:s',
             'venue' => 'required',
+            'image' => 'required',
         ];
     }
 }

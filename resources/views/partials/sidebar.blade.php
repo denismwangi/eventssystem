@@ -30,6 +30,14 @@
                 </a>
             </li>
             @endcan
+           
+            <li class="{{ $request->segment(2) == 'bookings' ? 'active' : '' }}">
+                <a href="{{ url('/admin/bookings') }}">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">Bookings</span>
+                </a>
+            </li>
+           
             
             @can('payment_access')
             <li class="{{ $request->segment(2) == 'payments' ? 'active' : '' }}">

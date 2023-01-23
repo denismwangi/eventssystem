@@ -2,7 +2,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.events.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.events.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'files'=>true, 'route' => ['admin.events.store']]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -16,7 +16,7 @@
                     {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('title'))
-                        <p class="help-block">
+                        <p class="help-block" style="color: red;">
                             {{ $errors->first('title') }}
                         </p>
                     @endif
@@ -31,7 +31,7 @@
                     @endphp
                      <label for="inputState">Select Ticket</label>
                    <select id="inputState" name="ticket_id" class="form-control">
-        <option selected>Choose...</option>
+        <option value="" selected>Choose...</option>
         @foreach($tickets as $ticket)
         <option value="{{$ticket->id}}">{{$ticket->title}}</option>
         @endforeach
@@ -39,8 +39,22 @@
       </select>
                     <p class="help-block"></p>
                     @if($errors->has('ticket_id'))
-                        <p class="help-block">
+                        <p class="help-block" style="color: red;">
                             {{ $errors->first('ticket_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-12 form-group">
+                   
+                     <label for="inputState">Event Poster</label>
+                     <input type="file" name="image" class="form-control">
+                   
+                    <p class="help-block"></p>
+                    @if($errors->has('image'))
+                        <p class="help-block" style="color: red;">
+                            {{ $errors->first('image') }}
                         </p>
                     @endif
                 </div>
@@ -54,7 +68,7 @@
                     {!! Form::textarea('description', old('description'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('description'))
-                        <p class="help-block">
+                        <p class="help-block" style="color: red;">
                             {{ $errors->first('description') }}
                         </p>
                     @endif
@@ -66,7 +80,7 @@
                     {!! Form::text('start_time', old('start_time'), ['class' => 'form-control datetime', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('start_time'))
-                        <p class="help-block">
+                        <p class="help-block" style="color: red;">
                             {{ $errors->first('start_time') }}
                         </p>
                     @endif
@@ -78,7 +92,7 @@
                     {!! Form::textarea('venue', old('venue'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('venue'))
-                        <p class="help-block">
+                        <p class="help-block" style="color: red;">
                             {{ $errors->first('venue') }}
                         </p>
                     @endif
