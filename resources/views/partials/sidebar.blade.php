@@ -31,7 +31,7 @@
             </li>
             @endcan
            
-            <li class="{{ $request->segment(2) == 'bookings' ? 'active' : '' }}">
+            <!-- <li class="{{ $request->segment(2) == 'bookings' ? 'active' : '' }}">
                 <a href="{{ url('/admin/bookings') }}">
                     <i class="fa fa-gears"></i>
                     <span class="title">Bookings</span>
@@ -81,7 +81,7 @@
                 @endcan
                 </ul>
             </li>
-            @endcan
+            @endcan -->
 
             
 

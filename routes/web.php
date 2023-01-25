@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('tickets', 'Admin\TicketsController');
     Route::post('tickets_mass_destroy', ['uses' => 'Admin\TicketsController@massDestroy', 'as' => 'tickets.mass_destroy']);
     Route::resource('payments', 'Admin\PaymentsController');
+    
     Route::get('bookings', 'Admin\BookingsController@index')->name('bookings');
 
 
