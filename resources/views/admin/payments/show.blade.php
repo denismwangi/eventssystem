@@ -17,8 +17,21 @@
                             <td>{{ $payment->email }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.payments.fields.merchant')</th>
-                            <td>{{ $payment->merchant }}</td>
+                           
+                        </tr>
+                        <tr>
+                            <th>name</th>
+                            <td>{{ $payment->name }}</td>
+                        </tr>
+                        <tr>
+                           
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{ $payment->phone }}</td>
+                        </tr>
+                        <tr>
+                           
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.payments.fields.amount')</th>

@@ -42,11 +42,9 @@
                     <ul class="main-nav nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="/login">Login</a></li>
-                        <!-- <li><a href="#">Categories</a></li>
-                        <li><a href="#">Laptops</a></li>
-                        <li><a href="#">Smartphones</a></li>
-                        <li><a href="#">Cameras</a></li>
-                        <li><a href="#">Accessories</a></li> -->
+                        <li><a href="/admin/dashboard">Admin</a></li>
+                        
+                        
                     </ul>
                     <!-- /NAV -->
                 </div>
@@ -63,30 +61,7 @@
                     <div class="col-md-12" style="height: 250px;">
                         <div class="hot-deal">
                             <ul class="hot-deal-countdown">
-                                <!-- <li>
-                                    <div>
-                                        <h3>02</h3>
-                                        <span>Days</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <h3>10</h3>
-                                        <span>Hours</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <h3>34</h3>
-                                        <span>Mins</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <h3>60</h3>
-                                        <span>Secs</span>
-                                    </div>
-                                </li> -->
+                                
                             </ul>
                             <!-- <h2 class="text-uppercase">hot deal this week</h2>
                             <p>New Collection Up to 50% OFF</p>

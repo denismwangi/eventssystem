@@ -56,8 +56,9 @@ class EventsController extends Controller
             'title' => 'required',
             'start_time' => 'required|date_format:'.config('app.date_format').' H:i:s',
             'venue' => 'required',
-            'image' => 'required',
-            'ticket_id' => 'required',
+            'description' => 'required',
+           // 'image' => 'required',
+            //'ticket_id' => 'required',
         ]);
 
        
@@ -72,10 +73,11 @@ class EventsController extends Controller
 
         $event = new Event;
         $event->title = $request->title;
+        $event->description = $request->description;
         $event->start_time = $request->start_time;
         $event->venue = $request->venue;
         $event->image = $imageName1;
-        $event->ticket_id = $request->ticket_id;
+       // $event->ticket_id = $request->ticket_id;
      //   dd($event);
         $event->save();
 

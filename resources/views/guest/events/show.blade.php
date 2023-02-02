@@ -42,11 +42,7 @@
                    <ul class="main-nav nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="/login">Login</a></li>
-                        <!-- <li><a href="#">Categories</a></li>
-                        <li><a href="#">Laptops</a></li>
-                        <li><a href="#">Smartphones</a></li>
-                        <li><a href="#">Cameras</a></li>
-                        <li><a href="#">Accessories</a></li> -->
+                       <li><a href="/admin/dashboard">Admin</a></li>
                     </ul>
                     <!-- /NAV -->
                 </div>
@@ -75,17 +71,19 @@
 
                @endif
 
+               @php
+
+                     $tickets = App\Ticket::where('event_id', $event->id)->get();
+                     
+                     
+                    @endphp
+
                    <form method="POST" action="{{url('/event/book')}}">
                       {{ csrf_field() }}
-                    @php
-                     $amount = App\Ticket::where('id', $event->ticket_id)->first();
-                     $amount_a = $amount->price;
-
-                    @endphp
+                    
 
                     <div class="col-md-5">
                          <div class="form-row">
-                            <input type="hidden" name="ticket_id" value="{{$event->ticket_id}}" class="form-control" id="inputEmail4">
                             <input type="hidden" name="event_id" value="{{$event->id}}" class="form-control" id="inputEmail4">
                             <div class="form-group">
                               <label for="inputEmail4">Name</label>
@@ -109,25 +107,32 @@
                               <label for="inputPassword4">Phone</label>
                               <input type="text" name="phone" class="form-control" id="inputPassword4">
                                @if($errors->has('phone'))
-                        <p class="help-block" style="color: red;">
-                            {{ $errors->first('phone') }}
-                        </p>
-                    @endif
+                            <p class="help-block" style="color: red;">
+                                {{ $errors->first('phone') }}
+                            </p>
+                        @endif
+                            </div>
+                            <div class="form-group">
+                              <label for="inputPassword4">Ticket</label>
+                              <select name="ticket_id" class="form-control">
+                                @foreach($tickets as $ticket)
+                                <option value="{{$ticket->id}}">{{$ticket->title}} (Amount - {{$ticket->price}} )</option>
+                                @endforeach
+                                
+                              </select>
+                               @if($errors->has('ticket_id'))
+                            <p class="help-block" style="color: red;">
+                                {{ $errors->first('ticket_id') }}
+                            </p>
+                        @endif
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label for="inputAddress">Amount</label>
-                            <input type="text" class="form-control" id="inputAddress" readonly="" name="amount" placeholder="" value="{{$amount_a}}">
-                          </div>
+                          
                           
                            
   
                     </div>
-                   @php
-                   $price = App\Ticket::where('id', $event->ticket_id)->first();
-                   $pr= $price->price;
-
-                   @endphp
+                  
                     <div class="col-md-5">
                         <div class="product-details">
                             <h2 class="product-name">{{ $event->title }}</h2>
@@ -140,10 +145,7 @@
                                <p><span class="label label-default">{{ $event->venue }}</span></p>
                                         <p> <span class="label label-info"> {{ $event->start_time }}</span></p>
                             </div>
-                            <div>
-                                <h3 class="product-price">KES {{$pr}}
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                           
 
                            
 

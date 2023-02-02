@@ -38,6 +38,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     
     Route::get('bookings', 'Admin\BookingsController@index')->name('bookings');
 
+    Route::get('payment/update/{id}', 'Admin\BookingsController@approve')->name('payment.approve');
+
+
 
 });
 
