@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.payments.title')</h3>
-    @can('payment_create')
-    <p>
-        <a href="{{ route('admin.payments.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
-    </p>
-    @endcan
+    
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -58,8 +52,12 @@
                                 <td>
                                     @can('payment_view')
                                     <a href="{{ route('admin.payments.show',[$payment->id]) }}" class="btn btn-primary">@lang('quickadmin.qa_view')</a>
-                                    <a href="{{ url('admin/payment/update',$payment->id) }}" onclick="return confirm('are you sure?')" class="btn btn-success">Confirm Payment</a>
+                                   
                                     @endcan
+                                     @can('event_create')
+                                      <a href="{{ url('admin/payment/update',$payment->id) }}" onclick="return confirm('are you sure?')" class="btn btn-success">Confirm Payment</a>
+
+                                     @endcan
 </td>
                             </tr>
                         @endforeach
